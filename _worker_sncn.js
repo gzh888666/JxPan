@@ -2478,13 +2478,16 @@ async function _0x5f194d(_0x4c5f69, _0x3ebbc2) {
   }
   if (_0x5a05dd === "clear_all_records") {
     try {
-      const _0x118839 = await _0x1448a8(_0x3ebbc2, "parse_record_");
+      const _0x118839 = await _0x1448a8(_0x3ebbc2, "parse_");
       let _0x48baac = 0;
       for (const _0x2469f3 of _0x118839) {
         const _0x2a5fd4 = _0x2469f3.key || _0x2469f3.name;
         await _0x55f64e(_0x3ebbc2, _0x2a5fd4);
         _0x48baac++;
       }
+      try { await _0x55f64e(_0x3ebbc2, "jx_total"); } catch (_0xclrE1) {}
+      try { if (_0x3ebbc2.jxpan) { await _0x3ebbc2.jxpan.prepare("DELETE FROM records_stats_cache").run(); } } catch (_0xclrE2) {}
+      console.log("[记录] 已清空 " + _0x48baac + " 条记录及统计");
       return new Response(JSON.stringify({
         code: 200,
         msg: "已成功清空",
@@ -15436,7 +15439,7 @@ async function _0x193548(_0x1799f1, _0x498112, _0x5c2e5f) {
       try {
         let _0x5d0b49 = 0;
         if (_0x498112 && (_0x498112.jxpan || _0x498112.jx)) {
-          const _0x57904d = await _0x1448a8(_0x498112, "parse_record_");
+          const _0x57904d = await _0x1448a8(_0x498112, "parse_");
           if (_0x57904d && Array.isArray(_0x57904d) && _0x57904d.length > 0) {
             for (const _0x5f1a98 of _0x57904d) {
               const _0x588e1d = _0x5f1a98.key || _0x5f1a98.name;
@@ -15453,7 +15456,9 @@ async function _0x193548(_0x1799f1, _0x498112, _0x5c2e5f) {
               }
             }
           }
-          console.log("[记录] 已清空 " + _0x5d0b49 + " 条解析记录");
+          try { await _0x55f64e(_0x498112, "jx_total"); } catch (_0xclrE3) {}
+          try { if (_0x498112.jxpan) { await _0x498112.jxpan.prepare("DELETE FROM records_stats_cache").run(); } } catch (_0xclrE4) {}
+          console.log("[记录] 已清空 " + _0x5d0b49 + " 条解析记录及统计");
           return new Response(JSON.stringify({
             code: 200,
             msg: "清空成功",
